@@ -1,0 +1,14 @@
+[build]
+
+# builder = "dockerfile"
+# dockerfilePath = "/docker/Dockerfile"
+
+builder = "nixpacks"
+buildCommand = "npm i && npm run build:web"
+
+
+[deploy]
+startCommand = "npm run prisma:migrate-deploy && npm run dev"
+healthcheckPath = "/api/trpc/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
